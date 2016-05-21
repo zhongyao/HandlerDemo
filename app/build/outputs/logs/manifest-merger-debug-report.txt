@@ -17,6 +17,10 @@ ADDED from D:\Android\git\AndroidStudio\app\src\main\AndroidManifest.xml:2:1-26:
 		ADDED from D:\Android\git\AndroidStudio\app\src\main\AndroidManifest.xml:2:11-69
 uses-sdk
 ADDED from D:\Android\git\AndroidStudio\app\src\main\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:support-v4:22.2.0] D:\Android\git\AndroidStudio\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\AndroidManifest.xml:20:5-43
+MERGED from [com.google.android.gms:play-services-appindexing:8.1.0] D:\Android\git\AndroidStudio\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\8.1.0\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-basement:8.1.0] D:\Android\git\AndroidStudio\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\AndroidManifest.xml:18:5-42
+MERGED from [com.android.support:support-v4:22.2.0] D:\Android\git\AndroidStudio\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\AndroidManifest.xml:20:5-43
 	android:targetSdkVersion
 		ADDED from D:\Android\git\AndroidStudio\app\src\main\AndroidManifest.xml:9:9-38
 		INJECTED from D:\Android\git\AndroidStudio\app\src\main\AndroidManifest.xml
@@ -27,6 +31,10 @@ ADDED from D:\Android\git\AndroidStudio\app\src\main\AndroidManifest.xml:7:5-9:4
 		INJECTED from D:\Android\git\AndroidStudio\app\src\main\AndroidManifest.xml
 application
 ADDED from D:\Android\git\AndroidStudio\app\src\main\AndroidManifest.xml:11:5-24:19
+MERGED from [com.android.support:support-v4:22.2.0] D:\Android\git\AndroidStudio\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-appindexing:8.1.0] D:\Android\git\AndroidStudio\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\8.1.0\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-basement:8.1.0] D:\Android\git\AndroidStudio\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\AndroidManifest.xml:20:5-24:19
+MERGED from [com.android.support:support-v4:22.2.0] D:\Android\git\AndroidStudio\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\AndroidManifest.xml:22:5-20
 	android:label
 		ADDED from D:\Android\git\AndroidStudio\app\src\main\AndroidManifest.xml:14:9-41
 	android:allowBackup
@@ -49,3 +57,9 @@ category#android.intent.category.LAUNCHER
 ADDED from D:\Android\git\AndroidStudio\app\src\main\AndroidManifest.xml:21:17-77
 	android:name
 		ADDED from D:\Android\git\AndroidStudio\app\src\main\AndroidManifest.xml:21:27-74
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:8.1.0] D:\Android\git\AndroidStudio\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\AndroidManifest.xml:21:9-23:69
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:8.1.0] D:\Android\git\AndroidStudio\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\AndroidManifest.xml:23:13-66
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:8.1.0] D:\Android\git\AndroidStudio\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\AndroidManifest.xml:22:13-58
