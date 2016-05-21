@@ -125,6 +125,11 @@ public class MainActivity extends Activity implements MyInterface,OnClickListene
 				
 				@Override
 				public void run() {
+
+					/**
+					 * Message.obtain()会从消息池中获取一个Message对象，
+					 * 如果消息池中是空的，才会使用构造方法实例化一个新Message，这样有利于消息资源的利用。
+					 */
 					Message msg = Message.obtain();
 					msg.what = SENDMSG;
 					msg.obj = "使用Message.obtain()+Handler.sendMessage(msg)发送消息";
@@ -137,6 +142,13 @@ public class MainActivity extends Activity implements MyInterface,OnClickListene
 				
 				@Override
 				public void run() {
+					/**
+					 * Message.obtain()方法具有多个重载方法，大致可以分为为两类:
+					 * 一类是无需传递Handler对象，对于这类的方法，当填充好消息后，需要调用Handler.sendMessage()方法来发送消息到消息队列中。
+					 * 第二类需要传递一个Handler对象，这类方法可以直接使用Message.sendToTarget()方法发送消息到消息队列中，
+					 * 这是因为在Message对象中有一个私有的Handler类型的属性Target，当时obtain方法传递进一个Handler对象的时候，
+					 * 会给Target属性赋值，当调用sendToTarget()方法的时候，实际在它内部还是调用的Target.sendMessage()方法。
+					 */
 					Message msg = Message.obtain(mHandler2);
 					msg.what = SENDTOTARGET;
 					msg.obj = "使用Message.obtain(mHandler2)+Handler.sendToTarget发送消息()";
