@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "D:\\Android\\git\\AndroidStudio\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main.xml",
+        "source": "D:\\Android\\git\\AndroidStudio\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "D:\\Android\\git\\AndroidStudio\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_main.xml",
+        "source": "D:\\Android\\git\\AndroidStudio\\app\\src\\main\\res\\layout\\fragment_main.xml"
+    }
+]

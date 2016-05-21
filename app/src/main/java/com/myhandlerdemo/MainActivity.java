@@ -14,7 +14,7 @@ import android.widget.TextView;
 /**
  * Handler机制
  * 
- * @author zhongyao。。。
+ * @author zhongyao。。。。
  * 
  */
 public class MainActivity extends Activity implements MyInterface,OnClickListener{
