@@ -4,6 +4,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
+/**
+ * @author hongri
+ */
 public class MyHandler extends Handler {
 	MyInterface myInterface;
 	public MyHandler(MyInterface myInterface) {

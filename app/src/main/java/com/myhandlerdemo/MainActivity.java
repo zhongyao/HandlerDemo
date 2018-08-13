@@ -59,7 +59,7 @@ public class MainActivity extends Activity implements MyInterface, OnClickListen
              * 因为looper.prepare()只能调用一次，所以一个线程中只能有一个Looper实例，一个MessageQueue实例。
              */
             Log.d(TAG, "mHandler2关联的Looper为:" + Looper.myLooper());
-            Log.d(TAG, "mHandler2关联的Looper为:" + Looper.myQueue());
+            Log.d(TAG, "mHandler2关联的MessageQueue为:" + Looper.myQueue());
             /**
              * 上面说到了，一个线程中只能有一个Looper、MessageQueue，那么有两个Handler都发送msg到该MessageQueue中，
              * 那么如何准确判断Handler对应msg。这里我们就用到了target。
