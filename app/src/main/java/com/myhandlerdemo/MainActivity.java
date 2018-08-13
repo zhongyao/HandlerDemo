@@ -109,7 +109,7 @@ public class MainActivity extends Activity implements MyInterface, OnClickListen
     }
 
     @Override
-    public void RefreshUI(Object obj) {
+    public void refreshUI(Object obj) {
         tv1.setText(obj.toString());
     }
 

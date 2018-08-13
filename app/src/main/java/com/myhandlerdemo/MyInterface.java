@@ -1,7 +1,10 @@
 package com.myhandlerdemo;
 
+/**
+ * @author youku
+ */
 public interface MyInterface {
 	
-	void RefreshUI(Object obj);
+	void refreshUI(Object obj);
 	
 }

@@ -3,6 +3,9 @@ package com.myhandlerdemo;
 import android.os.Handler;
 import android.os.Message;
 
+/**
+ * @author hongri
+ */
 public class WorkThread extends Thread {
 	private Handler handler;
 
