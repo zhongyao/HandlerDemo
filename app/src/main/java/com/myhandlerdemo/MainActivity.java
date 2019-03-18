@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 /**
- * Handler机制
+ * Android消息机制--Handle运行机制
  *
  * @author zhongyao
  */
