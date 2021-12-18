@@ -1,4 +1,4 @@
-# Handler内容更新：
+# Handler blog内容更新：
 
 ### [Handler运行机制](https://blog.csdn.net/u012440207/article/details/51113340)
 ### [Android Handler,MessageQueue,Looper源码解析](https://blog.csdn.net/u012440207/article/details/88667195)
