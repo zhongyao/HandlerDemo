@@ -2,11 +2,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-   >
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin">
 
     <TextView
         android:id="@+id/tv1"
@@ -43,10 +42,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Message.obtainHandler" />
+
     <Button
         android:id="@+id/btn_sendMessageAtTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Message.sendMessageAtTime()"/>
+        android:text="Message.sendMessageAtTime()" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="20dp"
+        android:background="#00ff00" />
+
+    <Button
+        android:id="@+id/btn_idleHandler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="IdleHandler" />
 
 </LinearLayout>
