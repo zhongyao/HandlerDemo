@@ -62,4 +62,17 @@
         android:layout_height="wrap_content"
         android:text="IdleHandler" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="20dp"
+        android:background="#00ff00" />
+
+    <Button
+        android:id="@+id/workThreadSend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="子线程间发送消息" />
+
 </LinearLayout>

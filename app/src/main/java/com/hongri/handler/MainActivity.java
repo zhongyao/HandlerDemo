@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import com.hongri.R;
 import com.hongri.idlehandler.DelayTaskDispatcher;
+import com.hongri.workthread.WorkThread1;
+import com.hongri.workthread.WorkThread2;
 
 /**
  * Android消息机制--Handle运行机制
@@ -34,6 +36,7 @@ public class MainActivity extends Activity implements MyInterface, OnClickListen
     private Button btn_message_obtainHandler;
     private Button btn_sendMessageAtTime;
     private Button btn_idleHandler;
+    private Button workThreadSend;
     private Handler mHandler = new Handler();
 
     private static Handler mHandler3 = new Handler() {
@@ -99,6 +102,7 @@ public class MainActivity extends Activity implements MyInterface, OnClickListen
         btn_message_obtainHandler = (Button)findViewById(R.id.btn_message_obtainHandler);
         btn_sendMessageAtTime = (Button)findViewById(R.id.btn_sendMessageAtTime);
         btn_idleHandler = (Button) findViewById(R.id.btn_idleHandler);
+        workThreadSend = (Button) findViewById(R.id.workThreadSend);
 
         btn_post.setOnClickListener(this);
         btn_post_delayed.setOnClickListener(this);
@@ -106,6 +110,7 @@ public class MainActivity extends Activity implements MyInterface, OnClickListen
         btn_message_obtainHandler.setOnClickListener(this);
         btn_sendMessageAtTime.setOnClickListener(this);
         btn_idleHandler.setOnClickListener(this);
+        workThreadSend.setOnClickListener(this);
     }
 
     private void initHanlder() {
@@ -233,6 +238,14 @@ public class MainActivity extends Activity implements MyInterface, OnClickListen
                 });
 
                 delayTaskDispatcher.start();
+                break;
+
+            case R.id.workThreadSend:
+                WorkThread1 workThread1 = new WorkThread1(WorkThread2.getHandler2());
+                workThread1.start();
+
+                WorkThread2 workThread2 = new WorkThread2(WorkThread1.getHandler1());
+                workThread2.start();
                 break;
             default:
                 break;

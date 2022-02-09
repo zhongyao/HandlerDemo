@@ -24,6 +24,7 @@ public final class R {
     public static final int btn_post_delayed=0x7f030005;
     public static final int btn_sendMessageAtTime=0x7f030006;
     public static final int tv1=0x7f030007;
+    public static final int workThreadSend=0x7f030008;
   }
   public static final class layout {
     public static final int activity_main=0x7f040000;
