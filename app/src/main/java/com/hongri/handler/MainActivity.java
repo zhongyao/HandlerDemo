@@ -1,10 +1,12 @@
 package com.hongri.handler;
 
 import android.app.Activity;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.os.MessageQueue;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
@@ -12,10 +14,14 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
+
 import com.hongri.R;
 import com.hongri.idlehandler.DelayTaskDispatcher;
 import com.hongri.workthread.WorkThread1;
 import com.hongri.workthread.WorkThread2;
+
+import java.lang.reflect.Method;
 
 /**
  * Android消息机制--Handle运行机制
@@ -37,7 +43,10 @@ public class MainActivity extends Activity implements MyInterface, OnClickListen
     private Button btn_sendMessageAtTime;
     private Button btn_idleHandler;
     private Button workThreadSend;
+    private Button sendSyncBarrier, removeSyncBarrier, sendSyncMessage, sendAsyncMessage;
     private Handler mHandler = new Handler();
+
+    private static Handler mSyncBarrierHandler;
 
     private static Handler mHandler3 = new Handler() {
         @Override
@@ -48,6 +57,12 @@ public class MainActivity extends Activity implements MyInterface, OnClickListen
                     //通过Log可知不同的Handler发送的msg对应的target即是该Handler，有target做标记，
                     //就会Handler处理对应的msg，而不会发生错乱的情况。
                     Log.d(TAG, "mHandler3:" + msg.getTarget().toString());
+                    break;
+                case MESSAGE_TYPE_SYNC:
+                    Log.d(TAG, "收到普通消息");
+                    break;
+                case MESSAGE_TYPE_ASYNC:
+                    Log.d(TAG, "收到异步消息");
                     break;
                 default:
                     break;
@@ -90,19 +105,26 @@ public class MainActivity extends Activity implements MyInterface, OnClickListen
 
         initHanlder();
 
+        initSyncBarrierHandler();
+
+
         new WorkThread(handler).start();
     }
 
     private void init() {
-        tv1 = (TextView)findViewById(R.id.tv1);
+        tv1 = (TextView) findViewById(R.id.tv1);
 
-        btn_post = (Button)findViewById(R.id.btn_post);
-        btn_post_delayed = (Button)findViewById(R.id.btn_post_delayed);
-        btn_message_obtain = (Button)findViewById(R.id.btn_message_obtain);
-        btn_message_obtainHandler = (Button)findViewById(R.id.btn_message_obtainHandler);
-        btn_sendMessageAtTime = (Button)findViewById(R.id.btn_sendMessageAtTime);
+        btn_post = (Button) findViewById(R.id.btn_post);
+        btn_post_delayed = (Button) findViewById(R.id.btn_post_delayed);
+        btn_message_obtain = (Button) findViewById(R.id.btn_message_obtain);
+        btn_message_obtainHandler = (Button) findViewById(R.id.btn_message_obtainHandler);
+        btn_sendMessageAtTime = (Button) findViewById(R.id.btn_sendMessageAtTime);
         btn_idleHandler = (Button) findViewById(R.id.btn_idleHandler);
         workThreadSend = (Button) findViewById(R.id.workThreadSend);
+        sendSyncBarrier = (Button) findViewById(R.id.sendSyncBarrier);
+        removeSyncBarrier = (Button) findViewById(R.id.removeSyncBarrier);
+        sendSyncMessage = (Button) findViewById(R.id.sendSyncMessage);
+        sendAsyncMessage = (Button) findViewById(R.id.sendAsyncMessage);
 
         btn_post.setOnClickListener(this);
         btn_post_delayed.setOnClickListener(this);
@@ -111,6 +133,10 @@ public class MainActivity extends Activity implements MyInterface, OnClickListen
         btn_sendMessageAtTime.setOnClickListener(this);
         btn_idleHandler.setOnClickListener(this);
         workThreadSend.setOnClickListener(this);
+        sendSyncBarrier.setOnClickListener(this);
+        removeSyncBarrier.setOnClickListener(this);
+        sendSyncMessage.setOnClickListener(this);
+        sendAsyncMessage.setOnClickListener(this);
     }
 
     private void initHanlder() {
@@ -124,6 +150,7 @@ public class MainActivity extends Activity implements MyInterface, OnClickListen
         tv1.setText(obj.toString());
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -247,8 +274,107 @@ public class MainActivity extends Activity implements MyInterface, OnClickListen
                 WorkThread2 workThread2 = new WorkThread2(WorkThread1.getHandler1());
                 workThread2.start();
                 break;
+
+            case R.id.sendSyncBarrier:
+                sendSyncBarrier();
+                break;
+            case R.id.removeSyncBarrier:
+                removeSyncBarrier();
+                break;
+            case R.id.sendSyncMessage:
+                sendSyncMessage();
+                break;
+            case R.id.sendAsyncMessage:
+                sendAsyncMessage();
+                break;
             default:
                 break;
         }
     }
+
+    int token;
+    public static final int MESSAGE_TYPE_SYNC = 2;
+    public static final int MESSAGE_TYPE_ASYNC = 3;
+
+
+    private void initSyncBarrierHandler() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Looper.prepare();
+
+                /**
+                 * 插入同步屏障之前，同步消息与异步消息接收无异；
+                 * 插入同步屏障之后，只能打印发送的异步消息；
+                 * 移除同步屏障后，之前发出的同步消息可以正常打印。
+                 */
+                mSyncBarrierHandler = new Handler() {
+                    @Override
+                    public void handleMessage(Message msg) {
+                        if (msg.what == MESSAGE_TYPE_SYNC) {
+                            Log.d(TAG, "收到普通消息");
+                        } else if (msg.what == MESSAGE_TYPE_ASYNC) {
+                            Log.d(TAG, "收到异步消息");
+                        }
+                    }
+                };
+                Looper.loop();
+            }
+        }).start();
+    }
+
+    /**
+     * 往消息队列插入同步屏障
+     */
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void sendSyncBarrier() {
+        try {
+            Log.d(TAG, "插入同步屏障");
+            MessageQueue queue = mSyncBarrierHandler.getLooper().getQueue();
+            Method method = MessageQueue.class.getDeclaredMethod("postSyncBarrier");
+            method.setAccessible(true);
+            token = (int) method.invoke(queue);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * 移除同步屏障
+     */
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void removeSyncBarrier() {
+        Log.d(TAG, "移除同步屏障");
+        try {
+            MessageQueue queue = mSyncBarrierHandler.getLooper().getQueue();
+            Method method = MessageQueue.class.getDeclaredMethod("removeSyncBarrier", int.class);
+            method.setAccessible(true);
+            method.invoke(queue, token);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * 往消息队列插入普通消息
+     */
+    public void sendSyncMessage() {
+        Log.d(TAG, "插入普通消息");
+        Message message = Message.obtain();
+        message.what = MESSAGE_TYPE_SYNC;
+        mSyncBarrierHandler.sendMessageDelayed(message, 1000);
+    }
+
+    /**
+     * 往消息队列插入异步消息
+     */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+    private void sendAsyncMessage() {
+        Log.d(TAG, "插入异步消息");
+        Message message = Message.obtain();
+        message.what = MESSAGE_TYPE_ASYNC;
+        message.setAsynchronous(true);
+        mSyncBarrierHandler.sendMessageDelayed(message, 1000);
+    }
+
 }

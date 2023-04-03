@@ -1,78 +1,116 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin">
 
-    <TextView
-        android:id="@+id/tv1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="" />
-
-    <Button
-        android:id="@+id/btn1"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="testCallBack" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin">
 
-    <Button
-        android:id="@+id/btn_post"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="handler.post" />
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="" />
 
-    <Button
-        android:id="@+id/btn_post_delayed"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="handler.postDelayed" />
+        <Button
+            android:id="@+id/btn1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="testCallBack" />
 
-    <Button
-        android:id="@+id/btn_message_obtain"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Message.obtain()" />
+        <Button
+            android:id="@+id/btn_post"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="handler.post" />
 
-    <Button
-        android:id="@+id/btn_message_obtainHandler"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Message.obtainHandler" />
+        <Button
+            android:id="@+id/btn_post_delayed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="handler.postDelayed" />
 
-    <Button
-        android:id="@+id/btn_sendMessageAtTime"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Message.sendMessageAtTime()" />
+        <Button
+            android:id="@+id/btn_message_obtain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Message.obtain()" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="20dp"
-        android:background="#00ff00" />
+        <Button
+            android:id="@+id/btn_message_obtainHandler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Message.obtainHandler" />
 
-    <Button
-        android:id="@+id/btn_idleHandler"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="IdleHandler" />
+        <Button
+            android:id="@+id/btn_sendMessageAtTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Message.sendMessageAtTime()" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="20dp"
-        android:background="#00ff00" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:background="#00ff00" />
 
-    <Button
-        android:id="@+id/workThreadSend"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="子线程间发送消息" />
+        <Button
+            android:id="@+id/btn_idleHandler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="IdleHandler" />
 
-</LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:background="#00ff00" />
+
+        <Button
+            android:id="@+id/workThreadSend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="子线程间发送消息" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="#00ff00" />
+
+        <Button
+            android:id="@+id/sendSyncBarrier"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="发送同步屏障" />
+
+        <Button
+            android:id="@+id/removeSyncBarrier"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="移除同步屏障" />
+
+        <Button
+            android:id="@+id/sendSyncMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="发送同步消息" />
+
+        <Button
+            android:id="@+id/sendAsyncMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="发送异步消息" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
